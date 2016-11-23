@@ -1,0 +1,75 @@
+/*
+ * File: ProgramHierarchy.java
+ * Name: 
+ * Section Leader: 
+ * ---------------------------
+ * This file is the starter file for the ProgramHierarchy problem.
+ */
+
+/*
+> The width and height of the class boxes should be specified as named constants
+so that they are easy to change.
+> The labels should be centered in their boxes. You can find the width of a label by
+calling label.getWidth() and the height it extends above the baseline by calling
+label.getAscent(). If you want to center a label, you need to shift its origin by
+half of these distances in each direction.
+> The connecting lines should start and end at the center of the appropriate edge of
+the box.
+> The entire figure should be centered in the window
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+
+public class ProgramHierarchy extends GraphicsProgram {	
+	private static final int POLY_WIDTH = 150;
+	private static final int POLY_HEIGHT = 30;
+	private static final int POLY_SPACE = 30;
+	private static final int SUBCLASSES = 3;
+	
+	public void run() {
+		/* You fill this in. */
+		buildScheme();		
+	}
+	
+	private void buildScheme() {
+		double center_x = getWidth() / 2;
+		double center_y = getHeight() / 2;
+		System.out.println("Center X: " + center_x);
+		System.out.println("Center Y: " + center_y);
+		
+		double x = center_x - POLY_WIDTH / 2;
+		double y = center_y - POLY_HEIGHT / 2 - POLY_HEIGHT - POLY_SPACE;
+		
+		GRect polyClass = new GRect(x, y, POLY_WIDTH, POLY_HEIGHT);
+		add(polyClass);
+		System.out.println(polyClass);
+		
+
+		GLabel labelClass = new GLabel("Program");
+		
+		double x_l = labelClass.getWidth() / 2;
+		double y_l = labelClass.getAscent() / 2;
+		
+		labelClass.setLocation(center_x - x_l, center_y - POLY_SPACE - POLY_HEIGHT / 2 - POLY_HEIGHT / 2 - y_l);
+		add(labelClass);
+		System.out.println(labelClass);
+		
+		for (int polyNum = 0; polyNum < SUBCLASSES; polyNum++) {
+			int noOfSpaces = SUBCLASSES - 1;
+			double x_1 = center_x - (POLY_WIDTH * SUBCLASSES) / 2 - (noOfSpaces * POLY_SPACE) / 2 + polyNum * POLY_WIDTH + polyNum * POLY_SPACE;
+			double y_1 = center_y - POLY_HEIGHT / 2;
+			GRect polySublcass = new GRect(x_1, y_1, POLY_WIDTH, POLY_HEIGHT);
+			add(polySublcass);
+			System.out.println(polySublcass);
+			GLine line = new GLine(center_x, center_y - POLY_HEIGHT / 2 - POLY_SPACE, x_1 + POLY_WIDTH / 2, y_1);
+			add(line);
+			System.out.println(line);
+		}	
+//		GLine line = new GLine();
+		
+//		GLabel label = new GLabel();
+	}
+}
+

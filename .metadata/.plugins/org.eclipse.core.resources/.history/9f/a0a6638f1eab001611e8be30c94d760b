@@ -1,0 +1,66 @@
+/*
+ * File: Target.java
+ * Name: 
+ * Section Leader: 
+ * -----------------
+ * This file is the starter file for the Target problem.
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+
+/*This figure is simply three GOval objects, two red and one white, drawn in the correct
+order. The outer circle should have a radius of one inch (72 pixels), the white circle
+has a radius of 0.65 inches, and the inner red circle has a radius of 0.3 inches. The
+figure should be centered in the window of a GraphicsProgram subclass.*/
+
+
+public class Target extends GraphicsProgram {	
+	
+	/** Inch expressed in pixels */	
+	private static final int N_CIRCLES = 3;
+	private static final double OUTER_RADIUS = 72;
+	private static final double INNER_RADIUS = OUTER_RADIUS - 25.2;
+	
+	private static final double INCH = 72;
+	
+	public void run() {
+		/* You fill this in. */
+		drawTarget();
+	}
+	
+	private void drawTarget() {
+		double radius = INCH;
+		double radius2 = INCH * 0.65;
+		double radius3 = INCH * 0.3;
+	
+		double x = getWidth() / 2 - (radius / 2);
+		double y = getHeight() / 2 - (radius / 2);
+		
+		double xx = getWidth() / 2 - (radius2 / 2);
+		double yy = getHeight() / 2 - (radius2 / 2);
+		
+		double xxx = getWidth() / 2 - (radius3 / 2);
+		double yyy = getHeight() / 2 - (radius3 / 2);
+		
+		GOval circle = new GOval(x, y, radius, radius);
+		add(circle);
+		circle.setColor(Color.red);
+		circle.setFilled(true);
+		circle.setFillColor(Color.red);
+		
+		GOval circle2 = new GOval(xx, yy, radius2, radius2);
+		add(circle2);
+		circle2.setColor(Color.white);
+		circle2.setFilled(true);
+		circle2.setFillColor(Color.white);
+		
+		GOval circle3 = new GOval(xxx, yyy, radius3, radius3);
+		add(circle3);
+		circle3.setColor(Color.red);
+		circle3.setFilled(true);
+		circle3.setFillColor(Color.red);
+	
+	}
+}

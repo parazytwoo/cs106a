@@ -1,0 +1,102 @@
+/*
+ * File: ProgramHierarchy.java
+ * Name: 
+ * Section Leader: 
+ * ---------------------------
+ * This file is the starter file for the ProgramHierarchy problem.
+ */
+
+/*
+> The width and height of the class boxes should be specified as named constants
+so that they are easy to change.
+> The labels should be centered in their boxes. You can find the width of a label by
+calling label.getWidth() and the height it extends above the baseline by calling
+label.getAscent(). If you want to center a label, you need to shift its origin by
+half of these distances in each direction.
+> The connecting lines should start and end at the center of the appropriate edge of
+the box.
+> The entire figure should be centered in the window
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+
+public class ProgramHierarchy extends GraphicsProgram {	
+	private static final int POLY_WIDTH = 150;
+	private static final int POLY_HEIGHT = 30;
+	private static final int POLY_SPACE = 30;
+	private static final int SUBCLASSES = 3;
+	
+	public void run() {
+		/* You fill this in. */
+		buildScheme();		
+	}
+	
+	public void buildScheme() {
+		
+		double center_x = getWidth() / 2;
+		double center_y = getHeight() / 2;
+		System.out.println("Center X: " + center_x);
+		System.out.println("Center Y: " + center_y);
+		
+		double polyClassCoordinateX = center_x - POLY_WIDTH / 2;
+		double polyClassCoordinateY = center_y - POLY_HEIGHT / 2 - POLY_HEIGHT - POLY_SPACE;
+		
+		GRect polyClass = new GRect(polyClassCoordinateX, polyClassCoordinateY, POLY_WIDTH, POLY_HEIGHT);
+		add(polyClass);
+		System.out.println(polyClass);
+		
+		GLabel labelClass = new GLabel("Program");
+		
+		double labelClassWidthCenter = labelClass.getWidth() / 2;
+		double labelClassHeightCenter = labelClass.getAscent() / 2;
+		System.out.println("Label Width / 2: " + labelClassWidthCenter);
+		System.out.println("Label Height / 2: " + labelClassHeightCenter);
+		
+		labelClass.setLocation(center_x - labelClassWidthCenter, center_y - POLY_HEIGHT - POLY_SPACE + labelClassHeightCenter);
+		add(labelClass);
+		System.out.println(labelClass);
+		
+		for (int polyNum = 0; polyNum < SUBCLASSES; polyNum++) {
+			
+			int numSpaces = SUBCLASSES - 1;
+			
+			double polySubclassCoordinateX = center_x - (POLY_WIDTH * SUBCLASSES) / 2 - (numSpaces * POLY_SPACE) / 2 + polyNum * POLY_WIDTH + polyNum * POLY_SPACE;
+			double polySubclassCoordinateY = center_y - POLY_HEIGHT / 2;
+			
+			GRect polySublcass = new GRect(polySubclassCoordinateX, polySubclassCoordinateY, POLY_WIDTH, POLY_HEIGHT);
+			add(polySublcass);
+			System.out.println(polySublcass);
+			
+			String subclassName = new String("");
+			
+			if (polyNum == 0){
+				subclassName = "GraphicsProgram";
+				
+			} else if (polyNum == 1) {
+				subclassName = "ConsoleProgram";
+				
+			} else {
+				subclassName = "DialogProgram";
+				
+			}
+			
+			GLabel labelSubclass = new GLabel(subclassName);
+			
+			double labelSubclassWidthCenter = labelSubclass.getWidth() / 2;
+			double labelSubclassHeightCenter = labelSubclass.getAscent() / 2;
+			System.out.println("Label Width / 2: " + labelSubclassWidthCenter);
+			System.out.println("Label Height / 2: " + labelSubclassHeightCenter);
+			
+			labelSubclass.setLocation(polySubclassCoordinateX + POLY_WIDTH / 2 - labelSubclassWidthCenter, center_y + labelSubclassHeightCenter);
+			add(labelSubclass);
+			System.out.println(labelSubclass);
+			
+			GLine line = new GLine(center_x, center_y - POLY_HEIGHT / 2 - POLY_SPACE, polySubclassCoordinateX + POLY_WIDTH / 2, polySubclassCoordinateY);
+			add(line);
+			System.out.println(line);
+		}
+	}
+}
+

@@ -1,0 +1,20 @@
+/*
+ * File: PythagoreanTheorem.java
+ * Name: 
+ * Section Leader: 
+ * -----------------------------
+ * This file is the starter file for the PythagoreanTheorem problem.
+ */
+
+import acm.program.*;
+
+public class PythagoreanTheorem extends ConsoleProgram {
+	public void run() {
+		/* You fill this in */
+		int a = 2;
+		int b = 3;
+		
+		double c = Math.sqrt(a ^ 2 + b ^ 2);
+		System.out.print("PythagoreanTheorem result: " + c);
+	}
+}
