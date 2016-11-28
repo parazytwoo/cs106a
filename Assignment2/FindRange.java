@@ -10,38 +10,51 @@ import acm.program.*;
 
 
 public class FindRange extends ConsoleProgram {
+	
 	private static final int SENTINEL = 0;
+	private static int maxNum = SENTINEL;
+	private static int minNum = SENTINEL;
 	
 	public void run() {
 		/* You fill this in */
-		
-		println("This program finds smallest and largest numbers.");
-		int n = readInt(" ? ");
-		int min = n;
-		int max = n;
+		intro();
+		inputValues();
+		printResult();
+	}
 	
-		while(true){
-			if (min == SENTINEL){
-				println("Not enough numbers.");
+	
+	private void intro() {
+		println("This program finds smallest and largest numbers.");
+	}
+
+	private void inputValues() {
+		while(true) {
+			int input = readInt(" ? ");
+			if (input == SENTINEL) {
 				break;
-			} else {
-				n = readInt(" ? ");
-				if (n != SENTINEL){
-					if (min > n){
-						min = n;
-					} else if (max < n){
-						max = n;
-					}
-				} else {
-					println("smallest: " + min);
-					println("largest: " + max);
-					
-					if (min == max){
-						println("You are the Alpha and Omega!");
-					}
-		
-					break;
-				}
+			}
+			
+			if (input > maxNum) {
+				maxNum = input;	
+			} 
+			if (input < minNum || minNum == SENTINEL) {
+				minNum = input;
+			}
+		}
+	}
+
+	private void printResult() {
+		if (minNum == SENTINEL) {
+			println("No values entered.");
+			
+		} 
+		else {
+			println("smallest: " + minNum);
+			println("largest: " + maxNum);
+			
+			if (minNum == maxNum) {
+				println("You are the Alpha and the Omeaga!");
+				
 			}
 		}
 	}
