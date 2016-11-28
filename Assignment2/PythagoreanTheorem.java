@@ -7,22 +7,17 @@
  */
 
 import java.awt.Component;
-
 import acm.program.*;
-import acmx.export.java.util.Scanner;
+//import java.awt.Graphics;
 
 public class PythagoreanTheorem extends ConsoleProgram {
 	public void run() {
 		/* You fill this in */
-		System.out.println("Enter values to compute Pytagorean theorem.");	
-	
-		Scanner in = new Scanner(System.in); 
-		System.out.printf("a:  ");
-		int a = in.nextInt();
-		System.out.printf("b:  ");
-		int b = in.nextInt();
+		println("Enter values to compute Pytagorean theorem.");	
+		int a = readInt("a: ");
+		int b = readInt("b: ");
 		
 		double c = Math.sqrt(a * a + b * b);
-		System.out.println("c = " + c);
+		println("c = " + c);
 	}
 }
