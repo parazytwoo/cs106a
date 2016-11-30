@@ -14,6 +14,9 @@
 import acm.program.*;
 
 public class Hailstone extends ConsoleProgram {
+	
+	private static final int SENTINEL = 1;
+	
 	public void run() {
 		/* You fill this in */
 		intro();
@@ -24,21 +27,29 @@ public class Hailstone extends ConsoleProgram {
 	int n;
 	
 	private void intro() {
-		println("The program reads in a number from the user and then displays the Hailstone sequence for that number.");
+		
+		println("The program reads in a positive integer from the user and then displays the Hailstone sequence for that number.");
+	
 	}
 	
 	private void inputValue() {
+		
 		n = readInt("Enter a number: ");
-		if (n > 0 && n != 1) {
-			printResult();
-		} else {
+		
+		if (n < 0) {
 			println("Your number is '1' or negative.");
 			inputValue();
 		}
 	}
-	
+
 	private void printResult() {
-		while(n != 1) {
+		
+		int cycles = 0;
+		
+		while (true) {
+			
+			cycles++;
+			
 			if(n % 2 != 0) {
 				int odd = 3 * n + 1;
 				println(n + " is odd, so I make 3n+1: " + odd);
@@ -47,9 +58,14 @@ public class Hailstone extends ConsoleProgram {
 			} else {
 				int even = n / 2;
 				println(n + " is even, so I take half: " + even);
-				n = even;			
+
+				if(even == SENTINEL) {
+					break;	
+				} else {
+					n = even;
+				}
 			}
-			printResult();		
 		}
+		println("Number of cycles: " + cycles);	
 	}	
 }
